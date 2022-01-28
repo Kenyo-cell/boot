@@ -3,9 +3,9 @@ package ru.netology.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.netology.entity.UserEntity;
 import ru.netology.exception.InvalidCredentialsException;
@@ -23,9 +23,10 @@ public class AuthorizationController {
     AuthorizationService authorizationService;
 
     @GetMapping("/authorize")
-    public List<Authorities> getAuthorities(@RequestParam("username") String username,
-                                            @RequestParam("password") String password) {
-        return authorizationService.getAuthorities(username, password);
+    public List<Authorities> getAuthorities(@Valid @User UserEntity user, BindingResult result) {
+        if (result.hasErrors())
+            System.out.println("Has Errors");
+        return authorizationService.getAuthorities(user.getUsername(), user.getPassword());
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)
