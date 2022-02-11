@@ -1,16 +1,16 @@
 package ru.netology.entity;
 
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
-@Validated
 public class UserEntity {
-    @NotBlank @Min(5)
+    @NotBlank
+    @Size(min = 3, max = 10)
     private String username;
-    @NotBlank @Min(5)
+    @NotBlank
+    @Size(min = 3, max = 10)
     private String password;
 
     public UserEntity(String username, String password) {

@@ -9,7 +9,10 @@ import java.util.Map;
 
 @Repository
 public class UserRepository {
-    Map<UserEntity, List<Authorities>> authoritiesMap = Map.of();
+    Map<UserEntity, List<Authorities>> authoritiesMap = Map.of(
+            new UserEntity("admin", "admin"),
+            List.of(Authorities.WRITE, Authorities.DELETE, Authorities.READ)
+    );
 
     public List<Authorities> getUserAuthorities(UserEntity user) {
         return authoritiesMap.getOrDefault(user, List.of());

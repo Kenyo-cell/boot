@@ -15,10 +15,6 @@ public class AuthorizationService {
     @Autowired
     private UserRepository userRepository;
 
-//    public AuthorizationService(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
-
     public List<Authorities> getAuthorities(String username, String password) {
         if (isEmpty(username) || isEmpty(password))
             throw new InvalidCredentialsException("Username or password is empty");
@@ -28,7 +24,7 @@ public class AuthorizationService {
         var userAuthorities = userRepository.getUserAuthorities(user);
 
         if (isEmpty(userAuthorities))
-            throw new UnauthorizedUserException("Unknown user %s".formatted(username));
+            throw new UnauthorizedUserException("Unknown user %s need Auth".formatted(username));
 
         return userAuthorities;
     }
