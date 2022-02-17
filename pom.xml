@@ -18,6 +18,11 @@
                     <compilerArgs>--enable-preview</compilerArgs>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -35,6 +40,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
             <version>2.6.3</version>
         </dependency>
     </dependencies>
